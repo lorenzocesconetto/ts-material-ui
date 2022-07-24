@@ -12,7 +12,7 @@ interface IThemeProviderProps {
 const ThemeContext = createContext<IThemeProviderData>(() => undefined);
 
 const ThemeProvider = ({ children }: IThemeProviderProps) => {
-  const [themeName, setThemeName] = useState<"light" | "dark">("light");
+  const [themeName, setThemeName] = useState<"light" | "dark">("dark");
 
   const toggleTheme = useCallback(() => {
     setThemeName(themeName === "light" ? "dark" : "light");

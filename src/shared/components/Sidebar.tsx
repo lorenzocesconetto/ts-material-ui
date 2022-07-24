@@ -3,16 +3,13 @@ import {
   Box,
   Divider,
   Drawer,
-  Icon,
   List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import React from "react";
 import { useDrawerContext } from "../providers";
+import { ListItemLink } from "./ListItemLink";
 
 interface ISidebarProps {
   children: React.ReactNode;
@@ -21,7 +18,8 @@ interface ISidebarProps {
 const Sidebar = ({ children }: ISidebarProps) => {
   const theme = useTheme();
   const isScreenXs = useMediaQuery(theme.breakpoints.only("xs"));
-  const { isOpen, toggleDrawer } = useDrawerContext();
+  const { isOpen, toggleDrawer, closeDrawer, drawerOptions } =
+    useDrawerContext();
 
   return (
     <>
@@ -57,12 +55,15 @@ const Sidebar = ({ children }: ISidebarProps) => {
           <Divider />
           <Box flex={1}>
             <List component="nav">
-              <ListItemButton>
-                <ListItemIcon>
-                  <Icon>home</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-              </ListItemButton>
+              {drawerOptions.map(item => (
+                <ListItemLink
+                  key={item.to}
+                  to={item.to}
+                  label={item.label}
+                  icon={item.icon}
+                  onClick={closeDrawer}
+                />
+              ))}
             </List>
           </Box>
         </Box>
