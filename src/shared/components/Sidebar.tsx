@@ -4,11 +4,14 @@ import {
   Divider,
   Drawer,
   List,
+  Switch,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import React from "react";
-import { useDrawerContext } from "../providers";
+import { useSidebarContext, useToggleTheme } from "../providers";
 import { ListItemLink } from "./ListItemLink";
 
 interface ISidebarProps {
@@ -17,15 +20,16 @@ interface ISidebarProps {
 
 const Sidebar = ({ children }: ISidebarProps) => {
   const theme = useTheme();
+  const toggleTheme = useToggleTheme();
   const isScreenXs = useMediaQuery(theme.breakpoints.only("xs"));
-  const { isOpen, toggleDrawer, closeDrawer, drawerOptions } =
-    useDrawerContext();
+  const { isOpen, toggleSidebar, closeSidebar, sidebarOptions } =
+    useSidebarContext();
 
   return (
     <>
       <Drawer
         open={isOpen}
-        onClose={toggleDrawer}
+        onClose={toggleSidebar}
         variant={isScreenXs ? "temporary" : "permanent"}
       >
         <Box
@@ -33,6 +37,7 @@ const Sidebar = ({ children }: ISidebarProps) => {
           height="100%"
           display="flex"
           flexDirection="column"
+          paddingBottom={1}
         >
           <Box
             width="100%"
@@ -55,16 +60,21 @@ const Sidebar = ({ children }: ISidebarProps) => {
           <Divider />
           <Box flex={1}>
             <List component="nav">
-              {drawerOptions.map(item => (
+              {sidebarOptions.map(item => (
                 <ListItemLink
                   key={item.to}
                   to={item.to}
                   label={item.label}
                   icon={item.icon}
-                  onClick={closeDrawer}
+                  onClick={closeSidebar}
                 />
               ))}
             </List>
+          </Box>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <WbSunnyIcon />
+            <Switch defaultChecked onClick={toggleTheme} />
+            <DarkModeIcon />
           </Box>
         </Box>
       </Drawer>

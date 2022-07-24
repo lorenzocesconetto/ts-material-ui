@@ -1,18 +1,18 @@
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./routes";
-import { ThemeProvider, DrawerProvider } from "./shared/providers";
+import { ThemeProvider, SidebarProvider } from "./shared/providers";
 import { Sidebar } from "./shared/components";
 
 const App = () => {
   return (
     <ThemeProvider>
-      <DrawerProvider>
+      <SidebarProvider>
         <BrowserRouter>
           <Sidebar>
             <AppRoutes />
           </Sidebar>
         </BrowserRouter>
-      </DrawerProvider>
+      </SidebarProvider>
     </ThemeProvider>
   );
 };

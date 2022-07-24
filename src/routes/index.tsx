@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Dashboard } from "../pages";
-import { useDrawerContext } from "../shared/providers";
+import { useSidebarContext } from "../shared/providers";
 
 const AppRoutes = () => {
-  const { setDrawerOptions } = useDrawerContext();
+  const { setSidebarOptions } = useSidebarContext();
 
   useEffect(() => {
-    setDrawerOptions([
+    setSidebarOptions([
       {
         label: "Home",
         icon: "home",
