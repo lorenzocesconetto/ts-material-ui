@@ -1,10 +1,10 @@
-import { Button } from "@mui/material";
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { Dashboard } from "../pages";
 import { useDrawerContext } from "../shared/providers";
 
 const AppRoutes = () => {
-  const { setDrawerOptions, toggleDrawer } = useDrawerContext();
+  const { setDrawerOptions } = useDrawerContext();
 
   useEffect(() => {
     setDrawerOptions([
@@ -23,14 +23,7 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <Button onClick={toggleDrawer} variant="contained">
-            Toggle sidebar
-          </Button>
-        }
-      />
+      <Route path="/" element={<Dashboard />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
