@@ -4,15 +4,13 @@ import {
   Divider,
   Drawer,
   List,
-  Switch,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+
 import React from "react";
-import { useSidebarContext, useToggleTheme } from "../providers";
-import { ListItemLink } from "./ListItemLink";
+import { useSidebarContext } from "../providers";
+import { ListItemLink, ThemeToggle } from "./";
 
 interface ISidebarProps {
   children: React.ReactNode;
@@ -20,7 +18,7 @@ interface ISidebarProps {
 
 const Sidebar = ({ children }: ISidebarProps) => {
   const theme = useTheme();
-  const toggleTheme = useToggleTheme();
+
   const isScreenXs = useMediaQuery(theme.breakpoints.only("xs"));
   const { isOpen, toggleSidebar, closeSidebar, sidebarOptions } =
     useSidebarContext();
@@ -71,11 +69,8 @@ const Sidebar = ({ children }: ISidebarProps) => {
               ))}
             </List>
           </Box>
-          <Box display="flex" justifyContent="center" alignItems="center">
-            <WbSunnyIcon />
-            <Switch defaultChecked onClick={toggleTheme} />
-            <DarkModeIcon />
-          </Box>
+
+          <ThemeToggle />
         </Box>
       </Drawer>
       <Box height="100vh" marginLeft={isScreenXs ? 0 : theme.spacing(28)}>

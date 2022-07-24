@@ -3,19 +3,34 @@ import React, { useCallback, useContext, useMemo } from "react";
 import { createContext, useState } from "react";
 import { LightTheme, DarkTheme } from "../themes";
 
-type IThemeProviderData = () => void;
+const STORAGE_THEME_NAME = "themeName";
+
+type IThemeName = "light" | "dark";
+
+interface IThemeProviderData {
+  toggleTheme(): void;
+  themeName: string;
+}
 
 interface IThemeProviderProps {
   children: React.ReactNode;
 }
 
-const ThemeContext = createContext<IThemeProviderData>(() => undefined);
+const ThemeContext = createContext<IThemeProviderData>(
+  {} as IThemeProviderData
+);
 
 const ThemeProvider = ({ children }: IThemeProviderProps) => {
-  const [themeName, setThemeName] = useState<"light" | "dark">("dark");
+  const initialTheme = (localStorage.getItem(STORAGE_THEME_NAME) ??
+    "light") as IThemeName;
+  const [themeName, setThemeName] = useState<IThemeName>(initialTheme);
 
   const toggleTheme = useCallback(() => {
-    setThemeName(themeName === "light" ? "dark" : "light");
+    setThemeName(currentTheme => {
+      const newTheme = currentTheme === "light" ? "dark" : "light";
+      localStorage.setItem(STORAGE_THEME_NAME, newTheme);
+      return newTheme;
+    });
   }, [themeName]);
 
   const theme = useMemo(
@@ -24,7 +39,7 @@ const ThemeProvider = ({ children }: IThemeProviderProps) => {
   );
 
   return (
-    <ThemeContext.Provider value={toggleTheme}>
+    <ThemeContext.Provider value={{ toggleTheme, themeName }}>
       <MuiThemeProvider theme={theme}>
         <Box
           width="100vw"
@@ -38,6 +53,6 @@ const ThemeProvider = ({ children }: IThemeProviderProps) => {
   );
 };
 
-const useToggleTheme = () => useContext(ThemeContext);
+const useThemeContext = () => useContext(ThemeContext);
 
-export { useToggleTheme, ThemeProvider };
+export { useThemeContext, ThemeProvider };

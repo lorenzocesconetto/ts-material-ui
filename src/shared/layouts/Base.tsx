@@ -27,7 +27,6 @@ const Base = ({ children, title, toolbar }: IBaseProps) => {
         padding={1}
         display="flex"
         alignItems="center"
-        // height={theme.spacing(12)}
         height={theme.spacing(isScreenXs ? 6 : isScreenDownMd ? 8 : 12)}
         gap={1}
       >
@@ -40,7 +39,7 @@ const Base = ({ children, title, toolbar }: IBaseProps) => {
         <Typography
           component="h1"
           variant={isScreenXs ? "h5" : isScreenDownMd ? "h4" : "h3"}
-          noWrap
+          noWrap // This is a shortcut for all these configs below
           // whiteSpace="nowrap"
           // overflow="hidden"
           // textOverflow="ellipsis"
