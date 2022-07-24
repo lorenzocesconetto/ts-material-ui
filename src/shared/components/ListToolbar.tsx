@@ -1,7 +1,7 @@
 import { Box, Button, Paper, TextField, InputAdornment } from "@mui/material";
 import { Add as AddIcon, Search as SearchIcon } from "@mui/icons-material";
 
-const Toolbar = () => {
+const ListToolbar = () => {
   return (
     <Box
       component={Paper}
@@ -23,7 +23,7 @@ const Toolbar = () => {
         size="small"
       />
       <Box flex={1} display="flex" justifyContent="end">
-        <Button disableElevation variant="contained" endIcon={<AddIcon />}>
+        <Button disableElevation variant="contained" startIcon={<AddIcon />}>
           New
         </Button>
       </Box>
@@ -31,4 +31,4 @@ const Toolbar = () => {
   );
 };
 
-export { Toolbar };
+export { ListToolbar };

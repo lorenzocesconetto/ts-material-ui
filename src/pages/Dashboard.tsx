@@ -1,9 +1,9 @@
 import { Base } from "../shared/layouts";
-import { Toolbar } from "../shared/components";
+import { DetailToolbar } from "../shared/components";
 
 const Dashboard = () => {
   return (
-    <Base title="Dashboard" toolbar={<Toolbar />}>
+    <Base title="Dashboard" toolbar={<DetailToolbar />}>
       Test
     </Base>
   );

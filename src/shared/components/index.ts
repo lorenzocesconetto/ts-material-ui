@@ -1,4 +1,5 @@
 export * from "./Sidebar";
 export * from "./ListItemLink";
-export * from "./Toolbar";
+export * from "./ListToolbar";
+export * from "./DetailToolbar";
 export * from "./ThemeToggle";
