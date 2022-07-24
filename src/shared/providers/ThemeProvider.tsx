@@ -11,11 +11,7 @@ interface IThemeProviderProps {
 
 const ThemeContext = createContext<IThemeProviderData>(() => undefined);
 
-export const useToggleTheme = () => {
-  return useContext(ThemeContext);
-};
-
-export const ThemeProvider = ({ children }: IThemeProviderProps) => {
+const ThemeProvider = ({ children }: IThemeProviderProps) => {
   const [themeName, setThemeName] = useState<"light" | "dark">("light");
 
   const toggleTheme = useCallback(() => {
@@ -41,3 +37,7 @@ export const ThemeProvider = ({ children }: IThemeProviderProps) => {
     </ThemeContext.Provider>
   );
 };
+
+const useToggleTheme = () => useContext(ThemeContext);
+
+export { useToggleTheme, ThemeProvider };
