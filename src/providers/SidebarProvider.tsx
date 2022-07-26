@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useState } from "react";
 import React from "react";
-import { IPageRouteProps } from "../../dataDefinitions";
+import { IPageRouteProps } from "../dataDefinitions";
 
 interface ISidebarProviderData {
   toggleSidebar(): void;

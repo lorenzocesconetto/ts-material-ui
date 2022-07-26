@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Dashboard } from "../pages";
-import { useSidebarContext } from "../shared/providers";
+import { useSidebarContext } from "../providers";
 
 const AppRoutes = () => {
   const { setSidebarOptions } = useSidebarContext();
