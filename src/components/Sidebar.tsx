@@ -10,7 +10,7 @@ import {
 
 import React from "react";
 import { useSidebarContext } from "../providers";
-import { ListItemLink, ThemeToggle } from "./";
+import { ListItemLink, ThemeToggle } from ".";
 
 interface ISidebarProps {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./routes";
-import { ThemeProvider, SidebarProvider } from "./shared/providers";
-import { Sidebar } from "./shared/components";
+import { ThemeProvider, SidebarProvider } from "./providers";
+import { Sidebar } from "./components";
 
 const App = () => {
   return (

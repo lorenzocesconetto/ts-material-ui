@@ -1,5 +1,5 @@
-import { Base } from "../shared/layouts";
-import { DetailToolbar } from "../shared/components";
+import { Base } from "../layouts";
+import { DetailToolbar } from "../components";
 import { Typography } from "@mui/material";
 
 const Dashboard = () => {

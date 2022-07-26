@@ -5,7 +5,7 @@ import {
   Icon,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { IPageRouteProps } from "../../dataDefinitions";
+import { IPageRouteProps } from "../dataDefinitions";
 import { useMatch, useResolvedPath } from "react-router-dom";
 
 const ListItemLink = ({
