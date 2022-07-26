@@ -1,5 +1,6 @@
 import { Box, Button, Paper, TextField, InputAdornment } from "@mui/material";
 import { Add as AddIcon, Search as SearchIcon } from "@mui/icons-material";
+import { Environment } from "../environment";
 
 const ListToolbar = () => {
   return (
@@ -19,7 +20,7 @@ const ListToolbar = () => {
             </InputAdornment>
           ),
         }}
-        placeholder="Search..."
+        placeholder={Environment.PLACEHOLDER_SEARCH}
         size="small"
       />
       <Box flex={1} display="flex" justifyContent="end">
