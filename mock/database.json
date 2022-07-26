@@ -1,3 +1,6 @@
 {
-  "people": [{ "id": 1, "name": "Lorenzo" }]
+  "people": [
+    { "id": 1, "name": "Lorenzo", "email": "lorenzo@example.com", "cityId": 1 },
+    { "id": 2, "name": "Vicenzo", "email": "vick@example.com", "cityId": 1 }
+  ]
 }

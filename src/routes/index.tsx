@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { CitiesListPage, DashboardPage } from "../pages";
+import { CitiesListPage, DashboardPage, PeopleListPage } from "../pages";
 import { useSidebarContext } from "../providers";
 
 const AppRoutes = () => {
@@ -18,7 +18,14 @@ const AppRoutes = () => {
       to: "/cities",
       element: <CitiesListPage />,
     },
+    {
+      label: "People",
+      icon: "people",
+      to: "/people",
+      element: <PeopleListPage />,
+    },
   ];
+
   useEffect(() => {
     setSidebarOptions(routes);
   }, []);

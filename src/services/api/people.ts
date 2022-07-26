@@ -1,7 +1,7 @@
 import { Environment } from "../../environment";
 import { Api, checkStatusOk } from ".";
 
-interface IPeopleList {
+export interface IPeopleList {
   id: number;
   name: string;
   email: string;
@@ -20,7 +20,7 @@ type TPeopleData = {
   data: IPeopleList[];
 };
 
-const getAll = async (page = 1, filter = ""): Promise<TPeopleData | Error> => {
+const getAll = async (page = 1, filter = ""): Promise<TPeopleData> => {
   const errMsg = "PeopleService.getAll failed";
   try {
     const url = `/people?_page=${page}&_limit=${Environment.ROW_LIMIT}&name_like=${filter}`;
@@ -36,7 +36,7 @@ const getAll = async (page = 1, filter = ""): Promise<TPeopleData | Error> => {
   throw new Error(errMsg);
 };
 
-const getById = async (id: number): Promise<IPeopleDetail | Error> => {
+const getById = async (id: number): Promise<IPeopleDetail> => {
   const errMsg = "PeopleService.getById failed";
   try {
     const url = `/people/${id}`;
@@ -52,7 +52,7 @@ const getById = async (id: number): Promise<IPeopleDetail | Error> => {
 
 const create = async (
   person: Omit<IPeopleDetail, "id">
-): Promise<IPeopleDetail | Error> => {
+): Promise<IPeopleDetail> => {
   const errMsg = "PeopleService.create failed";
   try {
     const url = "/people";
@@ -69,7 +69,7 @@ const create = async (
 const updateById = async (
   id: number,
   person: Omit<IPeopleDetail, "id">
-): Promise<IPeopleDetail | Error> => {
+): Promise<IPeopleDetail> => {
   const errMsg = "PeopleService.updateById failed";
   try {
     const url = `/people/${id}`;
@@ -83,7 +83,7 @@ const updateById = async (
   throw new Error(errMsg);
 };
 
-const deleteById = async (id: number): Promise<IPeopleDetail | Error> => {
+const deleteById = async (id: number): Promise<IPeopleDetail> => {
   const errMsg = "PeopleService.deleteById failed";
   try {
     const url = `/people/${id}`;

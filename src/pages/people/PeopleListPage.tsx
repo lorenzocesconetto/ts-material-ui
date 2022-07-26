@@ -1,21 +1,32 @@
 import { Typography } from "@mui/material";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ListToolbar } from "../../components";
 import { Base } from "../../layouts";
+import { IPeopleList, PeopleService } from "../../services/api/people";
 
-const CitiesListPage = () => {
+const PeopleListPage = () => {
+  const [people, setPeople] = useState<IPeopleList[]>();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchText = useMemo(() => searchParams.get("q") || "", [searchParams]);
 
-  // useEffect(() => {
-  //   (async () => {})();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        const people = await PeopleService.getAll(1, searchText);
+        setPeople(people.data);
+      } catch (err) {
+        alert((err as { message: string }).message);
+      }
+    })();
+  }, [searchText]);
+
+  console.log(people);
 
   return (
     <Base
-      title="Cities"
+      title="People"
       toolbar={
         <ListToolbar
           searchText={searchText}
@@ -35,4 +46,4 @@ const CitiesListPage = () => {
   );
 };
 
-export { CitiesListPage };
+export { PeopleListPage };
