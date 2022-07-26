@@ -1,29 +1,33 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Dashboard } from "../pages";
+import { CitiesListPage, DashboardPage } from "../pages";
 import { useSidebarContext } from "../providers";
 
 const AppRoutes = () => {
   const { setSidebarOptions } = useSidebarContext();
-
+  const routes = [
+    {
+      label: "Home",
+      icon: "home",
+      to: "/",
+      element: <DashboardPage />,
+    },
+    {
+      label: "Cities",
+      icon: "location_city",
+      to: "/cities",
+      element: <CitiesListPage />,
+    },
+  ];
   useEffect(() => {
-    setSidebarOptions([
-      {
-        label: "Home",
-        icon: "home",
-        to: "/",
-      },
-      {
-        label: "Cities",
-        icon: "star",
-        to: "/asd",
-      },
-    ]);
+    setSidebarOptions(routes);
   }, []);
 
   return (
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      {routes.map(option => (
+        <Route key={option.to} path={option.to} element={option.element} />
+      ))}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

@@ -1,8 +1,13 @@
 import { Box, Button, Paper, TextField, InputAdornment } from "@mui/material";
 import { Add as AddIcon, Search as SearchIcon } from "@mui/icons-material";
 import { Environment } from "../environment";
+import React from "react";
 
-const ListToolbar = () => {
+interface IListToolbarProps {
+  searchText: string;
+  onChangeSearchText(e: React.ChangeEvent<HTMLInputElement>): void;
+}
+const ListToolbar = ({ searchText, onChangeSearchText }: IListToolbarProps) => {
   return (
     <Box
       component={Paper}
@@ -13,6 +18,8 @@ const ListToolbar = () => {
       marginX={2}
     >
       <TextField
+        value={searchText}
+        onChange={onChangeSearchText}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">

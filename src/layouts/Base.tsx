@@ -39,10 +39,7 @@ const Base = ({ children, title, toolbar }: IBaseProps) => {
         <Typography
           component="h1"
           variant={isScreenXs ? "h5" : isScreenDownMd ? "h4" : "h3"}
-          noWrap // This is a shortcut for all these configs below
-          // whiteSpace="nowrap"
-          // overflow="hidden"
-          // textOverflow="ellipsis"
+          noWrap
         >
           {title}
         </Typography>
