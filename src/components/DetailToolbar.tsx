@@ -134,15 +134,7 @@ const DetailToolbar = ({
   );
 
   return (
-    <Box
-      component={Paper}
-      paddingX={1}
-      paddingY={2}
-      display="flex"
-      gap={1}
-      height={theme.spacing(5)}
-      alignItems="center"
-    >
+    <Box display="flex" gap={1} alignItems="center" height="100%">
       {showButtonSave &&
         (isLoadingButtonSave ? (
           <Typography variant="h3">

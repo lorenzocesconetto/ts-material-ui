@@ -14,7 +14,7 @@ const ListToolbar = ({
   onClickNew,
 }: IListToolbarProps) => {
   return (
-    <Box component={Paper} paddingX={1} paddingY={2} display="flex" gap={1}>
+    <Box display="flex" gap={1}>
       <TextField
         value={searchText}
         onChange={onChangeSearchText}

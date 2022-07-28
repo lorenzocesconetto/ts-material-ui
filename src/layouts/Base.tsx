@@ -2,6 +2,7 @@ import {
   Box,
   Icon,
   IconButton,
+  Paper,
   Typography,
   useMediaQuery,
   useTheme,
@@ -47,7 +48,11 @@ const Base = ({ children, title, toolbar }: IBaseProps) => {
       {/* End: Title */}
 
       {/* Begin: Toolbar */}
-      {toolbar}
+      {toolbar && (
+        <Box p={2} component={Paper} height={theme.spacing(5)}>
+          {toolbar}
+        </Box>
+      )}
       {/* End: Toolbar */}
 
       {/* Begin: Content */}
