@@ -77,7 +77,7 @@ const PeopleListPage = () => {
       }
     >
       <TableContainer
-        sx={{ m: 2, width: "auto" }}
+        sx={{ width: "auto" }}
         component={Paper}
         variant="outlined"
       >

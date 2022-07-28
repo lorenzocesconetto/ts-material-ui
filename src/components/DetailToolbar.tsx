@@ -140,7 +140,6 @@ const DetailToolbar = ({
       paddingY={2}
       display="flex"
       gap={1}
-      marginX={2}
       height={theme.spacing(5)}
       alignItems="center"
     >

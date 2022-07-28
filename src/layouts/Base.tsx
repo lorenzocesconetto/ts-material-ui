@@ -23,8 +23,8 @@ const Base = ({ children, title, toolbar }: IBaseProps) => {
 
   return (
     <Box height="100%" display="flex" flexDirection="column" gap={1}>
+      {/* Begin: Title */}
       <Box
-        padding={1}
         display="flex"
         alignItems="center"
         height={theme.spacing(isScreenXs ? 6 : isScreenDownMd ? 8 : 12)}
@@ -44,12 +44,17 @@ const Base = ({ children, title, toolbar }: IBaseProps) => {
           {title}
         </Typography>
       </Box>
+      {/* End: Title */}
 
-      {toolbar && <Box>{toolbar}</Box>}
+      {/* Begin: Toolbar */}
+      {toolbar}
+      {/* End: Toolbar */}
 
+      {/* Begin: Content */}
       <Box flex={1} overflow="auto">
         {children}
       </Box>
+      {/* End: Content */}
     </Box>
   );
 };
