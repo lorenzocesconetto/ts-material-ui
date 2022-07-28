@@ -8,7 +8,7 @@ export interface IPeopleList {
   cityId: number;
 }
 
-interface IPeopleDetail {
+export interface IPeopleDetail {
   id: number;
   name: string;
   email: string;

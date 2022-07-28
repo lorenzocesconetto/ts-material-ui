@@ -2,7 +2,7 @@ const Environment = {
   /**
    * Limit used in pagination
    */
-  ROW_LIMIT: 10,
+  ROW_LIMIT: 5,
   /**
    * Input field placeholder for search component
    */
@@ -10,7 +10,8 @@ const Environment = {
   /**
    * Message to be displayed when list is empty
    */
-  EMPTY_RESPONSE: "No registries available",
+  EMPTY_RESPONSE: "No registries found",
+  ERROR_RESPONSE: "Could not retrieve information :(",
   /**
    * Backend base url
    */
