@@ -6,8 +6,13 @@ import React from "react";
 interface IListToolbarProps {
   searchText: string;
   onChangeSearchText(e: React.ChangeEvent<HTMLInputElement>): void;
+  onClickNew(): void;
 }
-const ListToolbar = ({ searchText, onChangeSearchText }: IListToolbarProps) => {
+const ListToolbar = ({
+  searchText,
+  onChangeSearchText,
+  onClickNew,
+}: IListToolbarProps) => {
   return (
     <Box
       component={Paper}
@@ -31,7 +36,12 @@ const ListToolbar = ({ searchText, onChangeSearchText }: IListToolbarProps) => {
         size="small"
       />
       <Box flex={1} display="flex" justifyContent="end">
-        <Button disableElevation variant="contained" startIcon={<AddIcon />}>
+        <Button
+          onClick={onClickNew}
+          disableElevation
+          variant="contained"
+          startIcon={<AddIcon />}
+        >
           New
         </Button>
       </Box>

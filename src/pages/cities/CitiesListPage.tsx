@@ -22,6 +22,7 @@ const CitiesListPage = () => {
           onChangeSearchText={e =>
             setSearchParams({ q: e.target.value }, { replace: true })
           }
+          onClickNew={() => null}
         />
       }
     >

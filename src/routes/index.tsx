@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { CitiesListPage, DashboardPage, PeopleListPage } from "../pages";
+import {
+  CitiesListPage,
+  DashboardPage,
+  PeopleListPage,
+  PeopleDetailPage,
+} from "../pages";
 import { useSidebarContext } from "../providers";
 
 const AppRoutes = () => {
@@ -35,6 +40,7 @@ const AppRoutes = () => {
       {routes.map(option => (
         <Route key={option.to} path={option.to} element={option.element} />
       ))}
+      <Route path="/people/:id" element={<PeopleDetailPage />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

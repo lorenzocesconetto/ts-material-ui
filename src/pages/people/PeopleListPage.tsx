@@ -68,6 +68,7 @@ const PeopleListPage = () => {
       title="People"
       toolbar={
         <ListToolbar
+          onClickNew={() => navigate("/people/new")}
           searchText={searchText}
           onChangeSearchText={e =>
             setSearchParams({ q: e.target.value }, { replace: true })
