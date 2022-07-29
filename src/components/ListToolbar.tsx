@@ -1,4 +1,4 @@
-import { Box, Button, Paper, TextField, InputAdornment } from "@mui/material";
+import { Box, Button, TextField, InputAdornment } from "@mui/material";
 import { Add as AddIcon, Search as SearchIcon } from "@mui/icons-material";
 import { Environment } from "../environment";
 import React from "react";
