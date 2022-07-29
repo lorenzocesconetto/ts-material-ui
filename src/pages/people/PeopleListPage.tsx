@@ -127,7 +127,7 @@ const PeopleListPage = () => {
             {isLoading && (
               <TableRow>
                 <TableCell colSpan={3}>
-                  <LinearProgress variant="indeterminate" />
+                  <LinearProgress />
                 </TableCell>
               </TableRow>
             )}

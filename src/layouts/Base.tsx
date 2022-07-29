@@ -49,7 +49,12 @@ const Base = ({ children, title, toolbar }: IBaseProps) => {
 
       {/* Begin: Toolbar */}
       {toolbar && (
-        <Box p={2} component={Paper} height={theme.spacing(5)}>
+        <Box
+          p={2}
+          component={Paper}
+          variant="outlined"
+          height={theme.spacing(5)}
+        >
           {toolbar}
         </Box>
       )}

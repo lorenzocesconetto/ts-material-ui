@@ -4,7 +4,7 @@ import { CustomTextField, DetailToolbar } from "../../components";
 import { Base } from "../../layouts";
 import { PeopleService } from "../../services/api/people";
 import { Form } from "@unform/web";
-import { Box } from "@mui/material";
+import { Box, Grid, LinearProgress, Paper, Typography } from "@mui/material";
 import { FormHandles } from "@unform/core";
 
 interface IFormData {
@@ -17,7 +17,7 @@ const PeopleDetailPage = () => {
   const { id = "new" } = useParams<"id">();
   const navigate = useNavigate();
   const isEdit = id !== "new";
-  const [title, setTile] = useState(isEdit ? "" : "New person");
+  const [title, setTitle] = useState(isEdit ? "" : "New person");
   const [isLoading, setIsLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
 
@@ -27,7 +27,7 @@ const PeopleDetailPage = () => {
         setIsLoading(true);
         try {
           const data = await PeopleService.getById(parseInt(id));
-          setTile(data.name);
+          setTitle(data.name);
           formRef.current?.setData(data);
         } catch (err) {
           console.error(err);
@@ -84,11 +84,59 @@ const PeopleDetailPage = () => {
         />
       }
     >
-      <Box mt={1}>
+      <Box mt={1} component={Paper} variant="outlined">
         <Form ref={formRef} onSubmit={saveHandle}>
-          <CustomTextField name="name" size="small" label="Name" />
-          <CustomTextField name="email" size="small" label="Email" />
-          <CustomTextField name="cityId" size="small" label="City" />
+          <Grid container direction="column" p={2} spacing={2}>
+            {isLoading && (
+              <Grid item>
+                <LinearProgress />
+              </Grid>
+            )}
+
+            <Grid item>
+              <Typography variant="h6">General</Typography>
+            </Grid>
+
+            <Grid container item>
+              <Grid item xs={12} md={6} xl={4}>
+                <CustomTextField
+                  fullWidth
+                  name="name"
+                  size="small"
+                  label="Name"
+                  disabled={isLoading}
+                  sx={{ opacity: isLoading ? 0.3 : 1 }}
+                  onChange={e => setTitle(e.target.value)}
+                />
+              </Grid>
+            </Grid>
+
+            <Grid container item>
+              <Grid item xs={12} md={6} xl={4}>
+                <CustomTextField
+                  fullWidth
+                  name="email"
+                  size="small"
+                  label="Email"
+                  disabled={isLoading}
+                  sx={{ opacity: isLoading ? 0.3 : 1 }}
+                />
+              </Grid>
+            </Grid>
+
+            <Grid container item>
+              <Grid item xs={12} md={6} xl={4}>
+                <CustomTextField
+                  fullWidth
+                  name="cityId"
+                  size="small"
+                  label="City"
+                  disabled={isLoading}
+                  sx={{ opacity: isLoading ? 0.3 : 1 }}
+                />
+              </Grid>
+            </Grid>
+          </Grid>
         </Form>
       </Box>
     </Base>

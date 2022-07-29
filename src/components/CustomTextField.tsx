@@ -25,10 +25,16 @@ const CustomTextField = ({
     <TextField
       {...props}
       value={value}
-      onChange={e => setValue(e.target.value)}
+      onChange={e => {
+        setValue(e.target.value);
+        props.onChange?.(e);
+      }}
       helperText={error}
       error={!!error}
-      onKeyDown={() => (error ? clearError() : undefined)}
+      onKeyDown={e => {
+        error && clearError();
+        props.onKeyDown?.(e);
+      }}
     />
   );
 };
