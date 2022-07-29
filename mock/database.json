@@ -36,5 +36,27 @@
       "email": "lorenzo@example.com",
       "cityId": 1
     }
+  ],
+  "cities": [
+    {
+      "name": "Chicago",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Boston"
+    },
+    {
+      "id": 3,
+      "name": "San Francisco"
+    },
+    {
+      "id": 4,
+      "name": "New York"
+    },
+    {
+      "name": "test",
+      "id": 5
+    }
   ]
 }

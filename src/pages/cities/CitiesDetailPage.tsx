@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CustomTextField, DetailToolbar } from "../../components";
 import { Base } from "../../layouts";
-import { PeopleService } from "../../services";
+import { CitiesService } from "../../services";
 import { Form } from "@unform/web";
 import { Box, Grid, LinearProgress, Paper, Typography } from "@mui/material";
 import { useForm } from "../../hooks";
@@ -12,39 +12,35 @@ const SIZING_PROPS = { xs: 12, md: 6, xl: 4 };
 
 interface IFormData {
   name: string;
-  cityId: number;
-  email: string;
 }
 
 const formValidationSchema: yup.SchemaOf<IFormData> = yup.object().shape({
   name: yup.string().min(3).required(),
-  cityId: yup.number().integer().positive().required(),
-  email: yup.string().email().required(),
 });
 
-const PeopleDetailPage = () => {
+const CitiesDetailPage = () => {
   const { id = "new" } = useParams<"id">();
   const navigate = useNavigate();
   const isEdit = id !== "new";
-  const [title, setTitle] = useState(isEdit ? "" : "New person");
+  const [title, setTitle] = useState(isEdit ? "" : "New city");
   const [isLoading, setIsLoading] = useState(false);
   const { formRef, save, saveAndBack, getIsSaveAndBack } = useForm();
 
   useEffect(() => {
     (async () => {
       if (!isEdit) {
-        formRef.current?.setData({ name: "", cityId: "", email: "" }); // Needed so components are set as controlled from the beginning
-        setTitle("New person"); // Needed for when switching from editing into new
+        formRef.current?.setData({ name: "" }); // Needed so components are set as controlled from the beginning
+        setTitle("New city"); // Needed for when switching from editing into new
       } else {
         setIsLoading(true);
         try {
-          const data = await PeopleService.getById(parseInt(id));
+          const data = await CitiesService.getById(parseInt(id));
           setTitle(data.name);
           formRef.current?.setData(data);
         } catch (err) {
           console.error(err);
           alert((err as { message: string }).message);
-          navigate("/people");
+          navigate("/cities");
         } finally {
           setIsLoading(false);
         }
@@ -55,9 +51,9 @@ const PeopleDetailPage = () => {
   const handleDelete = async (id: number) => {
     if (!confirm("Are you sure you'd like to delete this record?")) return;
     try {
-      await PeopleService.deleteById(id);
+      await CitiesService.deleteById(id);
       alert("Successfully deleted");
-      navigate("/people");
+      navigate("/cities");
     } catch (err) {
       alert(err);
     }
@@ -86,15 +82,15 @@ const PeopleDetailPage = () => {
     try {
       let response;
       if (isEdit) {
-        response = await PeopleService.updateById(parseInt(id), validatedData);
+        response = await CitiesService.updateById(parseInt(id), validatedData);
       } else {
-        response = await PeopleService.create(validatedData);
+        response = await CitiesService.create(validatedData);
       }
 
       if (getIsSaveAndBack()) {
-        navigate("/people");
+        navigate("/cities");
       } else if (!isEdit) {
-        navigate(`/people/${response.id}`);
+        navigate(`/cities/${response.id}`);
       }
     } catch (err) {
       alert((err as { message: string }).message);
@@ -114,8 +110,8 @@ const PeopleDetailPage = () => {
           onClickButtonSave={save}
           onClickButtonSaveAndBack={saveAndBack}
           onClickButtonDelete={() => handleDelete(parseInt(id))}
-          onClickButtonNew={() => navigate("/people/new")}
-          onClickButtonBack={() => navigate("/people")}
+          onClickButtonNew={() => navigate("/cities/new")}
+          onClickButtonBack={() => navigate("/cities")}
         />
       }
     >
@@ -145,32 +141,6 @@ const PeopleDetailPage = () => {
                 />
               </Grid>
             </Grid>
-
-            <Grid container item>
-              <Grid item {...SIZING_PROPS}>
-                <CustomTextField
-                  fullWidth
-                  name="email"
-                  size="medium"
-                  label="Email"
-                  disabled={isLoading}
-                  sx={{ opacity: isLoading ? 0.3 : 1 }}
-                />
-              </Grid>
-            </Grid>
-
-            <Grid container item>
-              <Grid item {...SIZING_PROPS}>
-                <CustomTextField
-                  fullWidth
-                  name="cityId"
-                  size="medium"
-                  label="City"
-                  disabled={isLoading}
-                  sx={{ opacity: isLoading ? 0.3 : 1 }}
-                />
-              </Grid>
-            </Grid>
           </Grid>
         </Form>
       </Box>
@@ -178,4 +148,4 @@ const PeopleDetailPage = () => {
   );
 };
 
-export { PeopleDetailPage };
+export { CitiesDetailPage };

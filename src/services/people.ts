@@ -1,5 +1,5 @@
-import { Environment } from "../../environment";
-import { Api, checkStatusOk } from ".";
+import { Environment } from "../environment";
+import { Api, checkStatusOk } from "./api";
 
 export interface IPeopleList {
   id: number;

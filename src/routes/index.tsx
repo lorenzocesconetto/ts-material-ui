@@ -5,6 +5,7 @@ import {
   DashboardPage,
   PeopleListPage,
   PeopleDetailPage,
+  CitiesDetailPage,
 } from "../pages";
 import { useSidebarContext } from "../providers";
 
@@ -41,6 +42,7 @@ const AppRoutes = () => {
         <Route key={option.to} path={option.to} element={option.element} />
       ))}
       <Route path="/people/:id" element={<PeopleDetailPage />} />
+      <Route path="/cities/:id" element={<CitiesDetailPage />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

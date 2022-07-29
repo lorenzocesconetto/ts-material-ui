@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ListToolbar } from "../../components";
 import { useDebounce } from "../../hooks";
 import { Base } from "../../layouts";
-import { IPeopleList, PeopleService } from "../../services/api/people";
+import { IPeopleList, PeopleService } from "../../services";
 import {
   TableContainer,
   Table,
@@ -84,7 +84,7 @@ const PeopleListPage = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Actions</TableCell>
+              <TableCell width={100}>Actions</TableCell>
               <TableCell>Name</TableCell>
               <TableCell>Email</TableCell>
             </TableRow>

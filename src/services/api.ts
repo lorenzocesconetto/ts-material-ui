@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Environment } from "../../environment";
+import { Environment } from "../environment";
 import { errorInterceptor, responseInterceptor } from "./interceptors";
 
 const Api = axios.create({
