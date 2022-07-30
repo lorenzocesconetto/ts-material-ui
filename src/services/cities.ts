@@ -1,5 +1,5 @@
 import { Environment } from "../environment";
-import { Api, checkStatusOk } from "./api";
+import { Api, checkStatusOk } from "./";
 
 export interface ICitiesList {
   id: number;
@@ -18,8 +18,8 @@ type TCitiesData = {
 
 const getAll = async (page = 1, filter = ""): Promise<TCitiesData> => {
   const errMsg = "CitiesService.getAll failed";
+  const url = `/cities?_page=${page}&_limit=${Environment.ROW_LIMIT}&name_like=${filter}`;
   try {
-    const url = `/cities?_page=${page}&_limit=${Environment.ROW_LIMIT}&name_like=${filter}`;
     const { data, headers, status } = await Api.get<ICitiesList[]>(url);
     if (checkStatusOk(status)) {
       return { totalCount: parseInt(headers["x-total-count"]), data };
@@ -34,8 +34,8 @@ const getAll = async (page = 1, filter = ""): Promise<TCitiesData> => {
 
 const getById = async (id: number): Promise<ICitiesDetail> => {
   const errMsg = "CitiesService.getById failed";
+  const url = `/cities/${id}`;
   try {
-    const url = `/cities/${id}`;
     const { data, status } = await Api.get<ICitiesDetail>(url);
     if (checkStatusOk(status)) return data;
   } catch (err) {
@@ -50,8 +50,8 @@ const create = async (
   city: Omit<ICitiesDetail, "id">
 ): Promise<ICitiesDetail> => {
   const errMsg = "CitiesService.create failed";
+  const url = "/cities";
   try {
-    const url = "/cities";
     const { data, status } = await Api.post<ICitiesDetail>(url, city);
     if (checkStatusOk(status)) return data;
   } catch (err) {
@@ -67,8 +67,8 @@ const updateById = async (
   city: Omit<ICitiesDetail, "id">
 ): Promise<ICitiesDetail> => {
   const errMsg = "CitiesService.updateById failed";
+  const url = `/cities/${id}`;
   try {
-    const url = `/cities/${id}`;
     const { data, status } = await Api.put<ICitiesDetail>(url, city);
     if (checkStatusOk(status)) return data;
   } catch (err) {
@@ -81,8 +81,8 @@ const updateById = async (
 
 const deleteById = async (id: number): Promise<ICitiesDetail> => {
   const errMsg = "CitiesService.deleteById failed";
+  const url = `/cities/${id}`;
   try {
-    const url = `/cities/${id}`;
     const { data, status } = await Api.delete<ICitiesDetail>(url);
     if (checkStatusOk(status)) return data;
   } catch (err) {

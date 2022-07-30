@@ -1,5 +1,5 @@
 import { Environment } from "../environment";
-import { Api, checkStatusOk } from "./api";
+import { Api, checkStatusOk } from "./";
 
 export interface IPeopleList {
   id: number;
@@ -22,8 +22,8 @@ type TPeopleData = {
 
 const getAll = async (page = 1, filter = ""): Promise<TPeopleData> => {
   const errMsg = "PeopleService.getAll failed";
+  const url = `/people?_page=${page}&_limit=${Environment.ROW_LIMIT}&name_like=${filter}`;
   try {
-    const url = `/people?_page=${page}&_limit=${Environment.ROW_LIMIT}&name_like=${filter}`;
     const { data, headers, status } = await Api.get<IPeopleList[]>(url);
     if (checkStatusOk(status)) {
       return { totalCount: parseInt(headers["x-total-count"]), data };
@@ -38,8 +38,8 @@ const getAll = async (page = 1, filter = ""): Promise<TPeopleData> => {
 
 const getById = async (id: number): Promise<IPeopleDetail> => {
   const errMsg = "PeopleService.getById failed";
+  const url = `/people/${id}`;
   try {
-    const url = `/people/${id}`;
     const { data, status } = await Api.get<IPeopleDetail>(url);
     if (checkStatusOk(status)) return data;
   } catch (err) {
@@ -54,8 +54,8 @@ const create = async (
   person: Omit<IPeopleDetail, "id">
 ): Promise<IPeopleDetail> => {
   const errMsg = "PeopleService.create failed";
+  const url = "/people";
   try {
-    const url = "/people";
     const { data, status } = await Api.post<IPeopleDetail>(url, person);
     if (checkStatusOk(status)) return data;
   } catch (err) {
@@ -71,8 +71,8 @@ const updateById = async (
   person: Omit<IPeopleDetail, "id">
 ): Promise<IPeopleDetail> => {
   const errMsg = "PeopleService.updateById failed";
+  const url = `/people/${id}`;
   try {
-    const url = `/people/${id}`;
     const { data, status } = await Api.put<IPeopleDetail>(url, person);
     if (checkStatusOk(status)) return data;
   } catch (err) {
@@ -85,8 +85,8 @@ const updateById = async (
 
 const deleteById = async (id: number): Promise<IPeopleDetail> => {
   const errMsg = "PeopleService.deleteById failed";
+  const url = `/people/${id}`;
   try {
-    const url = `/people/${id}`;
     const { data, status } = await Api.delete<IPeopleDetail>(url);
     if (checkStatusOk(status)) return data;
   } catch (err) {

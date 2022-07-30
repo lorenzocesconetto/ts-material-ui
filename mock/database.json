@@ -1,4 +1,5 @@
 {
+  "auth": { "accessToken": "some_random_access_token" },
   "people": [
     {
       "id": 1,
