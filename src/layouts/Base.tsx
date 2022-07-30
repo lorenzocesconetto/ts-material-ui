@@ -23,7 +23,7 @@ const Base = ({ children, title, toolbar }: IBaseProps) => {
   const { toggleSidebar } = useSidebarContext();
 
   return (
-    <Box height="100%" display="flex" flexDirection="column" gap={1}>
+    <Box px={3} pt={0} pb={7} display="flex" flexDirection="column" gap={1}>
       {/* Begin: Title */}
       <Box
         display="flex"
@@ -61,9 +61,7 @@ const Base = ({ children, title, toolbar }: IBaseProps) => {
       {/* End: Toolbar */}
 
       {/* Begin: Content */}
-      <Box flex={1} overflow="auto">
-        {children}
-      </Box>
+      <Box>{children}</Box>
       {/* End: Content */}
     </Box>
   );

@@ -17,7 +17,7 @@ const LightTheme = createTheme({
     },
     background: {
       default: "#eee",
-      paper: "#fff",
+      paper: "#fafafa",
     },
   },
 });

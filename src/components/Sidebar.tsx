@@ -73,7 +73,11 @@ const Sidebar = ({ children }: ISidebarProps) => {
           <ThemeToggle />
         </Box>
       </Drawer>
-      <Box p={2} marginLeft={isScreenXs ? 0 : theme.spacing(28)}>
+      <Box
+        height="100vh"
+        overflow="auto"
+        marginLeft={isScreenXs ? 0 : theme.spacing(28)}
+      >
         {children}
       </Box>
     </>
