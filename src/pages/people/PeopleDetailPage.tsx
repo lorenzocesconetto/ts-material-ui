@@ -87,7 +87,6 @@ const PeopleDetailPage = () => {
       });
 
       formRef.current?.setErrors(validationErrors);
-      console.log(validationErrors);
       return;
     }
 

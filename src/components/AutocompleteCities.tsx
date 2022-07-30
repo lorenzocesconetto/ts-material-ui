@@ -22,7 +22,9 @@ const AutocompleteCities = ({
   const [options, setOptions] = useState<TAutocompleteOption[]>([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedId, setSelectedId] = useState<number>(defaultValue);
+  const [selectedId, setSelectedId] = useState<number | null>(
+    defaultValue || null
+  );
 
   // Register field within parent Form
   useEffect(() => {
@@ -45,30 +47,32 @@ const AutocompleteCities = ({
         }));
         setOptions(parsedData);
       } catch (err) {
-        alert((err as { message: string }).message);
+        console.error(err);
       } finally {
         setIsLoading(false);
       }
     });
   }, [searchText]);
 
-  const selectedOption: TAutocompleteOption | null = useMemo(
-    () => options.find(option => option.id === selectedId) || null,
-    [selectedId]
-  );
+  const selectedOption: TAutocompleteOption | null = useMemo(() => {
+    if (!selectedId) return null;
+    return options.find(option => option.id === selectedId) || null;
+  }, [selectedId]);
 
   return (
     <Autocomplete
+      isOptionEqualToValue={(option, value) =>
+        option.id === value.id && option.label === value.label
+      }
       disablePortal
       options={options}
       loading={isLoading}
       disabled={isExternalLoading}
       value={selectedOption}
-      onInputChange={(_, newValue) => setSearchText(newValue)}
+      onInputChange={(_, newSearchText) => setSearchText(newSearchText)}
       onChange={(_, newOption) => {
-        newOption && setSelectedId(newOption.id);
+        setSelectedId(newOption ? newOption.id : null);
         clearError();
-        setSearchText("");
       }}
       renderInput={params => (
         <TextField
