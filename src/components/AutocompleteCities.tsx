@@ -57,10 +57,11 @@ const AutocompleteCities = ({
   const selectedOption: TAutocompleteOption | null = useMemo(() => {
     if (!selectedId) return null;
     return options.find(option => option.id === selectedId) || null;
-  }, [selectedId]);
+  }, [selectedId, options]);
 
   return (
     <Autocomplete
+      filterOptions={x => x}
       isOptionEqualToValue={(option, value) =>
         option.id === value.id && option.label === value.label
       }
