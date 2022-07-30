@@ -112,6 +112,10 @@ const CitiesDetailPage = () => {
           onClickButtonDelete={() => handleDelete(parseInt(id))}
           onClickButtonNew={() => navigate("/cities/new")}
           onClickButtonBack={() => navigate("/cities")}
+          isLoadingButtonNew={isLoading}
+          isLoadingButtonDelete={isLoading}
+          isLoadingButtonSave={isLoading}
+          isLoadingButtonSaveAndBack={isLoading}
         />
       }
     >

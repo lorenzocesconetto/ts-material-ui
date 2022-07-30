@@ -124,6 +124,10 @@ const PeopleDetailPage = () => {
           onClickButtonDelete={() => handleDelete(parseInt(id))}
           onClickButtonNew={() => navigate("/people/new")}
           onClickButtonBack={() => navigate("/people")}
+          isLoadingButtonNew={isLoading}
+          isLoadingButtonDelete={isLoading}
+          isLoadingButtonSave={isLoading}
+          isLoadingButtonSaveAndBack={isLoading}
         />
       }
     >

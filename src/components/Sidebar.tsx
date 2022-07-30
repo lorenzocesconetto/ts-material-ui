@@ -78,7 +78,9 @@ const Sidebar = ({ children }: ISidebarProps) => {
         overflow="auto"
         marginLeft={isScreenXs ? 0 : theme.spacing(28)}
       >
-        {children}
+        <Box px={3} pt={0} pb={7}>
+          {children}
+        </Box>
       </Box>
     </>
   );
