@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { CustomTextField, DetailToolbar } from "../../components";
+import {
+  AutocompleteCities,
+  CustomTextField,
+  DetailToolbar,
+} from "../../components";
 import { Base } from "../../layouts";
 import { PeopleService } from "../../services";
 import { Form } from "@unform/web";
@@ -18,7 +22,12 @@ interface IFormData {
 
 const formValidationSchema: yup.SchemaOf<IFormData> = yup.object().shape({
   name: yup.string().min(3).required(),
-  cityId: yup.number().integer().positive().required(),
+  cityId: yup
+    .number()
+    .typeError("Pick one of the available options")
+    .integer()
+    .positive()
+    .required(),
   email: yup.string().email().required(),
 });
 
@@ -33,7 +42,7 @@ const PeopleDetailPage = () => {
   useEffect(() => {
     (async () => {
       if (!isEdit) {
-        formRef.current?.setData({ name: "", cityId: "", email: "" }); // Needed so components are set as controlled from the beginning
+        formRef.current?.setData({ name: "", cityId: null, email: "" }); // Needed so components are set as controlled from the beginning
         setTitle("New person"); // Needed for when switching from editing into new
       } else {
         setIsLoading(true);
@@ -70,15 +79,15 @@ const PeopleDetailPage = () => {
         abortEarly: false,
       });
     } catch (err) {
-      const validationErrors: { [key: string]: string } = {};
+      const validationErrors: Record<string, string> = {};
 
       (err as yup.ValidationError).inner.forEach(item => {
         if (!item.path) return;
-
         validationErrors[item.path] = item.message;
       });
 
       formRef.current?.setErrors(validationErrors);
+      console.log(validationErrors);
       return;
     }
 
@@ -161,14 +170,7 @@ const PeopleDetailPage = () => {
 
             <Grid container item>
               <Grid item {...SIZING_PROPS}>
-                <CustomTextField
-                  fullWidth
-                  name="cityId"
-                  size="medium"
-                  label="City"
-                  disabled={isLoading}
-                  sx={{ opacity: isLoading ? 0.3 : 1 }}
-                />
+                <AutocompleteCities isExternalLoading={isLoading} />
               </Grid>
             </Grid>
           </Grid>

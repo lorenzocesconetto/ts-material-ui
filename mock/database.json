@@ -2,39 +2,39 @@
   "people": [
     {
       "id": 1,
-      "name": "Lorenzo",
-      "email": "lorenzo@example.com",
+      "name": "Lorenzo 1",
+      "email": "lorenzo1@example.com",
       "cityId": 1
     },
     {
       "id": 2,
-      "name": "Lorenzo",
-      "email": "lorenzo@example.com",
-      "cityId": 1
+      "name": "Lorenzo 2",
+      "email": "lorenzo2@example.com",
+      "cityId": 2
     },
     {
       "id": 3,
-      "name": "Lorenzo",
-      "email": "lorenzo@example.com",
-      "cityId": 1
+      "name": "Lorenzo 3",
+      "email": "lorenzo3@example.com",
+      "cityId": 3
     },
     {
       "id": 4,
-      "name": "Lorenzo",
-      "email": "lorenzo@example.com",
-      "cityId": 1
+      "name": "Lorenzo 4",
+      "email": "lorenzo4@example.com",
+      "cityId": 4
     },
     {
       "id": 5,
-      "name": "Lorenzo",
-      "email": "lorenzo@example.com",
-      "cityId": 1
+      "name": "Lorenzo 5",
+      "email": "lorenzo5@example.com",
+      "cityId": 5
     },
     {
       "id": 6,
-      "name": "Lorenzo",
-      "email": "lorenzo@example.com",
-      "cityId": 1
+      "name": "Lorenzo 6",
+      "email": "lorenzo6@example.com",
+      "cityId": 6
     }
   ],
   "cities": [
@@ -55,8 +55,28 @@
       "name": "New York"
     },
     {
-      "name": "test",
+      "name": "San Diego",
       "id": 5
+    },
+    {
+      "name": "Los Angeles",
+      "id": 6
+    },
+    {
+      "name": "Las Vegas",
+      "id": 7
+    },
+    {
+      "name": "Grand Canyon",
+      "id": 8
+    },
+    {
+      "name": "Lincoln",
+      "id": 9
+    },
+    {
+      "name": "Omaha",
+      "id": 10
     }
   ]
 }
