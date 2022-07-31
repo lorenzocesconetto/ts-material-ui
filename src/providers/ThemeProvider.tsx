@@ -1,29 +1,28 @@
-import { Box, ThemeProvider as MuiThemeProvider } from "@mui/material";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material";
 import React, { useCallback, useContext, useMemo } from "react";
 import { createContext, useState } from "react";
 import { LightTheme, DarkTheme } from "../themes";
 
 const STORAGE_THEME_NAME = "themeName";
 
-type IThemeName = "light" | "dark";
+type TThemeName = "light" | "dark";
 
 interface IThemeProviderData {
   toggleTheme(): void;
-  themeName: string;
+  themeName: TThemeName;
 }
 
 interface IThemeProviderProps {
   children: React.ReactNode;
 }
 
-const ThemeContext = createContext<IThemeProviderData>(
-  {} as IThemeProviderData
-);
+const initialTheme = (localStorage.getItem(STORAGE_THEME_NAME) ??
+  "light") as TThemeName;
+
+const ThemeContext = createContext({} as IThemeProviderData);
 
 const ThemeProvider = ({ children }: IThemeProviderProps) => {
-  const initialTheme = (localStorage.getItem(STORAGE_THEME_NAME) ??
-    "light") as IThemeName;
-  const [themeName, setThemeName] = useState<IThemeName>(initialTheme);
+  const [themeName, setThemeName] = useState<TThemeName>(initialTheme);
 
   const toggleTheme = useCallback(() => {
     setThemeName(currentTheme => {
@@ -31,7 +30,7 @@ const ThemeProvider = ({ children }: IThemeProviderProps) => {
       localStorage.setItem(STORAGE_THEME_NAME, newTheme);
       return newTheme;
     });
-  }, [themeName]);
+  }, []);
 
   const theme = useMemo(
     () => (themeName === "light" ? LightTheme : DarkTheme),
@@ -40,15 +39,7 @@ const ThemeProvider = ({ children }: IThemeProviderProps) => {
 
   return (
     <ThemeContext.Provider value={{ toggleTheme, themeName }}>
-      <MuiThemeProvider theme={theme}>
-        <Box
-          width="100vw"
-          height="100vh"
-          bgcolor={theme.palette.background.default}
-        >
-          {children}
-        </Box>
-      </MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     </ThemeContext.Provider>
   );
 };

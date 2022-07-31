@@ -3,13 +3,17 @@ import {
   Box,
   Divider,
   Drawer,
+  Icon,
   List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 
 import React from "react";
-import { useSidebarContext } from "../providers";
+import { useAuthContext, useSidebarContext } from "../providers";
 import { ListItemLink, ThemeToggle } from ".";
 
 interface ISidebarProps {
@@ -18,7 +22,7 @@ interface ISidebarProps {
 
 const Sidebar = ({ children }: ISidebarProps) => {
   const theme = useTheme();
-
+  const { logout } = useAuthContext();
   const isScreenXs = useMediaQuery(theme.breakpoints.only("xs"));
   const { isOpen, toggleSidebar, closeSidebar, sidebarOptions } =
     useSidebarContext();
@@ -71,13 +75,23 @@ const Sidebar = ({ children }: ISidebarProps) => {
           </Box>
 
           <ThemeToggle />
+          <List component="nav">
+            <ListItemButton onClick={logout}>
+              <ListItemIcon>
+                <Icon>logout</Icon>
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItemButton>
+          </List>
         </Box>
       </Drawer>
       <Box
         height="100vh"
         overflow="auto"
         marginLeft={isScreenXs ? 0 : theme.spacing(28)}
+        bgcolor={theme.palette.background.default}
       >
+        {/* If these paddings below are added to the above Box instead, then the scroll gets weird, i.e., it gets some kind of breakpoints */}
         <Box px={3} pt={0} pb={7}>
           {children}
         </Box>

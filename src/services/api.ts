@@ -4,6 +4,7 @@ import { errorInterceptor, responseInterceptor } from "./interceptors";
 
 const Api = axios.create({
   baseURL: Environment.URL_BASE,
+  headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
 });
 
 Api.interceptors.response.use(responseInterceptor, errorInterceptor);

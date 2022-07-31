@@ -13,17 +13,11 @@ interface ISidebarProviderProps {
   children: React.ReactNode;
 }
 
-const SidebarContext = createContext<ISidebarProviderData>({
-  isOpen: false,
-  sidebarOptions: [] as IPageRouteProps[],
-} as ISidebarProviderData);
+const SidebarContext = createContext({} as ISidebarProviderData);
 
 const SidebarProvider = ({ children }: ISidebarProviderProps) => {
-  const initialProps = useContext(SidebarContext);
-  const [isOpen, setIsOpen] = useState(initialProps.isOpen);
-  const [sidebarOptions, setSidebarOptions] = useState<IPageRouteProps[]>(
-    initialProps.sidebarOptions
-  );
+  const [isOpen, setIsOpen] = useState(false);
+  const [sidebarOptions, setSidebarOptions] = useState<IPageRouteProps[]>([]);
 
   const toggleSidebar = useCallback(() => setIsOpen(!isOpen), [isOpen]);
 

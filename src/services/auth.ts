@@ -1,21 +1,19 @@
 import { Api, checkStatusOk } from "./";
 
+export interface IAuthenticateArgs {
+  email: string;
+  password: string;
+}
 interface IAuth {
   accessToken: string;
 }
 
-const authenticate = async ({
-  email,
-  password,
-}: {
-  email: string;
-  password: string;
-}): Promise<IAuth> => {
+const authenticate = async (arg: IAuthenticateArgs): Promise<IAuth> => {
   const errMsg = "AuthService.authenticate failed";
   const url = "/auth";
   try {
     const { data, status } = await Api.get<IAuth>(url, {
-      data: { email, password },
+      data: arg,
     });
     if (checkStatusOk(status)) {
       return data;

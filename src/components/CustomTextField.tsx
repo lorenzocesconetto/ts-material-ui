@@ -26,15 +26,12 @@ const CustomTextField = ({
       {...props}
       value={value}
       onChange={e => {
+        error && clearError();
         setValue(e.target.value);
         props.onChange?.(e);
       }}
       helperText={error}
       error={!!error}
-      onKeyDown={e => {
-        error && clearError();
-        props.onKeyDown?.(e);
-      }}
     />
   );
 };

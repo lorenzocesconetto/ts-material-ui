@@ -5,3 +5,4 @@ export * from "./DetailToolbar";
 export * from "./ThemeToggle";
 export * from "./CustomTextField";
 export * from "./AutocompleteCities";
+export * from "./PrivateRoute";
