@@ -49,11 +49,10 @@ Starts a mocked backend that runs on [localhost:3333](http://localhost:3333).
 
 ## 5. Screenshots dark theme
 
-|                                                             |                                                         |
-| :---------------------------------------------------------: | :-----------------------------------------------------: |
-| ![Cities Detail Dark](./screenshots/cities-detail-dark.png) | ![Cities List Dark](./screenshots/cities-list-dark.png) |
-| ![People Detail Dark](./screenshots/people-detail-dark.png) | ![People List Dark](./screenshots/people-list-dark.png) |
-
+![Cities Detail Dark](./screenshots/cities-detail-dark.png)  
+![Cities List Dark](./screenshots/cities-list-dark.png)
+![People Detail Dark](./screenshots/people-detail-dark.png)
+![People List Dark](./screenshots/people-list-dark.png)
 ![Dashboard Dark](./screenshots/dashboad-dark.png)
 
 ## 6. Future improvements
